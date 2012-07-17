@@ -4,8 +4,8 @@ COMPILER ?= `which uglifyjs` --no-copyright --unsafe
 
 
 SRC_FILES = $(SRC_DIR)/header.js\
-	$(SRC_DIR)/defaults.js\
 	$(SRC_DIR)/utils.js\
+	$(SRC_DIR)/defaults.js\
 	$(SRC_DIR)/simpledraw.js\
 	$(SRC_DIR)/rangemap.js\
 	$(SRC_DIR)/interact.js\

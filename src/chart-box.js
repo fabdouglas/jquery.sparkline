@@ -167,18 +167,31 @@
                 options.get('medianColor')).append();
             if (options.get('target')) {
                 size = Math.ceil(options.get('spotRadius'));
-                target.drawLine(
-                    Math.round((options.get('target') - minValue) * unitSize + canvasLeft),
-                    Math.round((canvasHeight / 2) - size),
-                    Math.round((options.get('target') - minValue) * unitSize + canvasLeft),
-                    Math.round((canvasHeight / 2) + size),
-                    options.get('targetColor')).append();
-                target.drawLine(
-                    Math.round((options.get('target') - minValue) * unitSize + canvasLeft - size),
-                    Math.round(canvasHeight / 2),
-                    Math.round((options.get('target') - minValue) * unitSize + canvasLeft + size),
-                    Math.round(canvasHeight / 2),
-                    options.get('targetColor')).append();
+                var targetVal = options.get('target');
+                var targetObj = options.get('targetObj')
+                if (!targetObj || targetObj == 'crosshair') {
+                    target.drawLine(
+                        Math.round((targetVal - minValue) * unitSize + canvasLeft),
+                        Math.round((canvasHeight / 2) - size),
+                        Math.round((targetVal - minValue) * unitSize + canvasLeft),
+                        Math.round((canvasHeight / 2) + size),
+                        options.get('targetColor')).append();
+                    target.drawLine(
+                        Math.round((targetVal - minValue) * unitSize + canvasLeft - size),
+                        Math.round(canvasHeight / 2),
+                        Math.round((targetVal - minValue) * unitSize + canvasLeft + size),
+                        Math.round(canvasHeight / 2),
+                        options.get('targetColor')).append();
+                }
+                else if (targetObj == 'circle')
+                {
+                    target.drawCircle(
+                        (targetVal - minValue) * unitSize + canvasLeft,
+                        canvasHeight / 2,
+                        options.get('spotRadius'),
+                        options.get('targetColor'),
+                        options.get('targetColor')).append();
+                }
             }
             target.render();
         }
