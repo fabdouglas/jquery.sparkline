@@ -1,8 +1,7 @@
-SRC_DIR = src
-DIST_DIR = dist
-COMPILER ?= `which uglifyjs` --no-copyright
+include ../../build/modules.mk
 
 
+MODULE = sparkline
 SRC_FILES = $(SRC_DIR)/header.js\
 	$(SRC_DIR)/defaults.js\
 	$(SRC_DIR)/utils.js\
@@ -22,21 +21,15 @@ SRC_FILES = $(SRC_DIR)/header.js\
 	$(SRC_DIR)/vcanvas-vml.js\
 	$(SRC_DIR)/footer.js
 
+SRC_DIR 		= src
+PRODUCTION		= ${PRODUCTION_DIR}/${MODULE}.js
+DEVELOPMENT 	= ${DEVELOPMENT_DIR}/${MODULE}.js
+VERSION 		= $(shell cat version.txt)
+DIST 			= dist/${MODULE}.js
 
-VERSION = $(shell cat version.txt)
-
-all: jqs-gzip jqs-min-gzip Changelog.txt
-	cp Changelog.txt dist/
+all: jqs
+	${MODULARIZE} -n "${MODULE}" ${DIST} > ${DEVELOPMENT}
+	${UGLIFYJS} ${DEVELOPMENT} > ${PRODUCTION}
 
 jqs: ${SRC_FILES}
-	cat ${SRC_FILES} | sed 's/@VERSION@/${VERSION}/'  >${DIST_DIR}/jquery.sparkline.js
-
-jqs-min: jqs
-	cat minheader.txt | sed 's/@VERSION@/${VERSION}/' >dist/jquery.sparkline.min.js
-	${COMPILER} dist/jquery.sparkline.js  >>dist/jquery.sparkline.min.js
-
-jqs-gzip: jqs
-	gzip -9 < dist/jquery.sparkline.js >dist/jquery.sparkline.js.gz
-	
-jqs-min-gzip: jqs-min
-	gzip -9 < dist/jquery.sparkline.min.js >dist/jquery.sparkline.min.js.gz
+	cat ${SRC_FILES} | sed 's/@VERSION@/${VERSION}/' >${DIST}
