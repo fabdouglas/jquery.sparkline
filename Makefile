@@ -28,7 +28,7 @@ VERSION 		= $(shell cat version.txt)
 DIST 			= dist/${MODULE}.js
 
 all: jqs
-	${MODULARIZE} -n "${MODULE}" ${DIST} > ${DEVELOPMENT}
+	${MODULARIZE} -jq -n "${MODULE}" ${DIST} > ${DEVELOPMENT}
 	${UGLIFYJS} ${DEVELOPMENT} > ${PRODUCTION}
 
 jqs: ${SRC_FILES}
