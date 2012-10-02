@@ -132,7 +132,8 @@
                 Math.round((q3 - q1) * unitSize),
                 Math.round(canvasHeight * 0.8),
                 options.get('boxLineColor'),
-                options.get('boxFillColor')).append();
+                options.get('boxFillColor'),
+                options.get('cornerRadius')).append();
             // left whisker
             target.drawLine(
                 Math.round((lwhisker - minValue) * unitSize + canvasLeft),

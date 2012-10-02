@@ -89,8 +89,8 @@
             return vel;
         },
 
-        _drawRect: function (shapeid, x, y, width, height, lineColor, fillColor) {
-            return this._drawShape(shapeid, [[x, y], [x, y + height], [x + width, y + height], [x + width, y], [x, y]], lineColor, fillColor);
+        _drawRect: function (shapeid, x, y, width, height, lineColor, fillColor, radius) {
+            return this._drawShape(shapeid, [[x, y], [x, y + height], [x + width, y + height], [x + width, y], [x, y]], lineColor, fillColor, radius);
         },
 
         reset: function () {

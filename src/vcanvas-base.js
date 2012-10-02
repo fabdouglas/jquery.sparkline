@@ -55,8 +55,8 @@
             return this._genShape('PieSlice', [x, y, radius, startAngle, endAngle, lineColor, fillColor]);
         },
 
-        drawRect: function (x, y, width, height, lineColor, fillColor) {
-            return this._genShape('Rect', [x, y, width, height, lineColor, fillColor]);
+        drawRect: function (x, y, width, height, lineColor, fillColor, radius) {
+            return this._genShape('Rect', [x, y, width, height, lineColor, fillColor, radius]);
         },
 
         getElement: function () {
