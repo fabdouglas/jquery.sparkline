@@ -102,10 +102,18 @@
         var vl;
         if (q === 2) {
             vl = Math.floor(values.length / 2);
-            return values.length % 2 ? values[vl] : (values[vl] + values[vl + 1]) / 2;
+            var ret;
+            if (values.length == 1) {
+              ret = values[0];
+            } else if (values.length == 2) {
+              ret = (values[0] + values[1]) / 2
+            } else {
+              ret = (values.length % 2 && values.length > 1) ? values[vl] : (values[vl] + values[vl + 1]) / 2;
+            }
+            return ret;
         } else {
             vl = Math.floor(values.length / 4);
-            return values.length % 2 ? (values[vl * q] + values[vl * q + 1]) / 2 : values[vl * q];
+            return (values.length % 2 && values.length > 1) ? (values[vl * q] + values[vl * q + 1]) / 2 : values[vl * q];
         }
     };
 
