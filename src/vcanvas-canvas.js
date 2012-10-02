@@ -46,6 +46,8 @@
 
             context.beginPath();
             if (path.length > 2) {
+              if ((path[1][1] - path[0][1]) < radius)
+                radius = 0
               // this is a rectangle
               context.moveTo(path[0][0] + radius + 0.5, path[0][1] + 0.5);
 
