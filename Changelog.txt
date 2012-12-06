@@ -8,6 +8,8 @@ up a negligible percentage of the whole chart (issue 49)
 
 + Don't display line chart final marker if final value is null (issue 46)
 
++ Added reference line functionality. (courtesy of: Andreas D. Landmark)
+
 
 2.1 15/October/2012
 
