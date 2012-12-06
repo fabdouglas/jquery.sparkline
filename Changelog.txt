@@ -3,6 +3,8 @@ http://omnipotent.net/jquery.sparkline/
 
 2.x ??
 
++ Added reference line functionality. (courtesy of: Andreas D. Landmark)
+
 + Added support for Internet Explorer 10 (issue 18)
 Thanks Jonathan Sampson
 

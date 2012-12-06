@@ -34,6 +34,8 @@
                 highlightSpotColor: '#5f5',
                 highlightLineColor: '#f22',
                 refLineColor: '#f22',
+				// refLineX: null,
+				// refLineY: null,
                 spotRadius: 1.5,
                 minSpotColor: '#f80',
                 maxSpotColor: '#f80',
