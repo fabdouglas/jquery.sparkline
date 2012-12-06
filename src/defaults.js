@@ -33,6 +33,9 @@
                 spotColor: '#f80',
                 highlightSpotColor: '#5f5',
                 highlightLineColor: '#f22',
+                refLineColor: '#f22',
+				// refLineX: null,
+				// refLineY: null,
                 spotRadius: 1.5,
                 minSpotColor: '#f80',
                 maxSpotColor: '#f80',
@@ -145,16 +148,11 @@
             'white-space: nowrap;' +
             'padding: 5px;' +
             'border: 1px solid white;' +
+            'z-index: 10000;' +
             '}' +
             '.jqsfield { ' +
             'color: white;' +
             'font: 10px arial, san serif;' +
             'text-align: left;' +
             '}';
-
-    initStyles = function() {
-        addCSS(defaultStyles);
-    };
-
-    $(initStyles);
 

@@ -2,3 +2,7 @@
 .*.sw[a-z]
 *.un~
 Session.vim
+
+# Backup files created by other editors:
+*~
+*.bak

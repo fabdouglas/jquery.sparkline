@@ -1,6 +1,51 @@
 jQuery Sparkline Plugin ChangeLog
 http://omnipotent.net/jquery.sparkline/
 
+2.x ??
+
++ Fix a couple of issues rendering pie charts in IE when they slices that make
+up a negligible percentage of the whole chart (issue 49)
+
++ Don't display line chart final marker if final value is null (issue 46)
+
++ Added reference line functionality. (courtesy of: Andreas D. Landmark)
+
+
+2.1 15/October/2012
+
++ Added support for Internet Explorer 10 (issue 18)
+Thanks Jonathan Sampson
+
++ Enable the plugin to be loaded dynamically (issue 6)
+Thanks joeenzminger
+
++ Pie charts with zero in the array of values will no longer
+cause IE to display "undefined" in the page (issue 9)
+
++ Null values in bar charts are now correctly omitted by default (issue 23)
+
++ Null values in line charts would cause value highligting to be
+incorrect (issue 4)
+
++ Raise default z-index for tooltips to ensure they always appear on top
+of the chart (issue 5)
+
++ Allow target and performance values to be set to null for bullet charts,
+omitting them from the chart (issue 3)
+
++ Fix clipping of highlight marker spots if min/max/final spots are disabled 
+in line charts (issue 31)
+
++ Line charts with normalRangeMin=0 will now render the normal range 
+correctly (issue 7)
+Thanks Tim Mathewso
+
++ Add support for AMD based module loaders such as requirejs (PR 32)
+Thanks Tim Tucker
+
++ Fix interquartile range calculation used by box plots (PR 10)
+Thanks Claudio Riva
+
 
 2.0 29/April/2012
 

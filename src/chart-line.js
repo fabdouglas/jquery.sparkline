@@ -172,7 +172,7 @@
                 canvasTop, canvasLeft,
                 vertex, path, paths, x, y, xnext, xpos, xposnext,
                 last, next, yvalcount, lineShapes, fillShapes, plen,
-                valueSpots, color, xvalues, yvalues, i;
+                valueSpots, hlSpotsEnabled, color, xvalues, yvalues, i;
 
             if (!line._super.render.call(this)) {
                 return;
@@ -200,18 +200,20 @@
             }
             if (spotRadius) {
                 // adjust the canvas size as required so that spots will fit
-                if (options.get('minSpotColor') || (options.get('spotColor') && yvalues[yvallast] === this.miny)) {
+                hlSpotsEnabled = options.get('highlightSpotColor') &&  !options.get('disableInteraction');
+                if (hlSpotsEnabled || options.get('minSpotColor') || (options.get('spotColor') && yvalues[yvallast] === this.miny)) {
                     canvasHeight -= Math.ceil(spotRadius);
                 }
-                if (options.get('maxSpotColor') || (options.get('spotColor') && yvalues[yvallast] === this.maxy)) {
+                if (hlSpotsEnabled || options.get('maxSpotColor') || (options.get('spotColor') && yvalues[yvallast] === this.maxy)) {
                     canvasHeight -= Math.ceil(spotRadius);
                     canvasTop += Math.ceil(spotRadius);
                 }
-                if ((options.get('minSpotColor') || options.get('maxSpotColor')) && (yvalues[0] === this.miny || yvalues[0] === this.maxy)) {
+                if (hlSpotsEnabled ||
+                     ((options.get('minSpotColor') || options.get('maxSpotColor')) && (yvalues[0] === this.miny || yvalues[0] === this.maxy))) {
                     canvasLeft += Math.ceil(spotRadius);
                     canvasWidth -= Math.ceil(spotRadius);
                 }
-                if (options.get('spotColor') ||
+                if (hlSpotsEnabled || options.get('spotColor') ||
                     (options.get('minSpotColor') || options.get('maxSpotColor') &&
                         (yvalues[yvallast] === this.miny || yvalues[yvallast] === this.maxy))) {
                     canvasWidth -= Math.ceil(spotRadius);
@@ -221,7 +223,7 @@
 
             canvasHeight--;
 
-            if (options.get('normalRangeMin') && !options.get('drawNormalOnTop')) {
+            if (options.get('normalRangeMin') !== undefined && !options.get('drawNormalOnTop')) {
                 this.drawNormalRange(canvasLeft, canvasTop, canvasHeight, canvasWidth, rangey);
             }
 
@@ -243,8 +245,8 @@
                         if (yvalues[i - 1] !== null) {
                             path = [];
                             paths.push(path);
-                            vertices.push(null);
                         }
+                        vertices.push(null);
                     }
                 } else {
                     if (y < this.miny) {
@@ -291,7 +293,7 @@
                     options.get('fillColor'), options.get('fillColor')).append();
             }
 
-            if (options.get('normalRangeMin') && options.get('drawNormalOnTop')) {
+            if (options.get('normalRangeMin') !== undefined && options.get('drawNormalOnTop')) {
                 this.drawNormalRange(canvasLeft, canvasTop, canvasHeight, canvasWidth, rangey);
             }
 
@@ -317,7 +319,7 @@
                 }
 
             }
-            if (spotRadius && options.get('spotColor')) {
+            if (spotRadius && options.get('spotColor') && yvalues[yvallast] !== null) {
                 target.drawCircle(canvasLeft + Math.round((xvalues[xvalues.length - 1] - this.minx) * (canvasWidth / rangex)),
                     canvasTop + Math.round(canvasHeight - (canvasHeight * ((yvalues[yvallast] - this.miny) / rangey))),
                     spotRadius, undefined,
@@ -339,6 +341,19 @@
                         options.get('maxSpotColor')).append();
                 }
             }
+
+			// explicitly compare the refLineX/Y option values with 'null' as numeric zero(0) should plot a ref-line at zero!
+			if (options.get('refLineX') != null) {
+				var y;
+				y = Math.round(this.canvasHeight - (options.get('refLineX') - this.miny) * (this.canvasHeight/rangey));
+				target.drawLine(0, y, this.canvasWidth, y, options.get('refLineColor')).append();
+			}
+
+			if (options.get('refLineY') != null) {
+				var x;
+				x = Math.round((options.get('refLineY') - this.minx) * (this.canvasWidth/rangex));
+				target.drawLine(x, this.canvasHeight, x, 0, options.get('refLineColor')).append();
+			}
 
             this.lastShapeId = target.getLastShapeId();
             this.canvasTop = canvasTop;

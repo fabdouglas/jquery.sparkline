@@ -5,11 +5,15 @@
         type: 'bullet',
 
         init: function (el, values, options, width, height) {
-            var min, max;
+            var min, max, vals;
             bullet._super.init.call(this, el, values, options, width, height);
 
             // values: target, performance, range1, range2, range3
-            values = $.map(values, Number);
+            this.values = values = normalizeValues(values);
+            // target or performance could be null
+            vals = values.slice();
+            vals[0] = vals[0] === null ? vals[2] : vals[0];
+            vals[1] = values[1] === null ? vals[2] : vals[1];
             min = Math.min.apply(Math, values);
             max = Math.max.apply(Math, values);
             if (options.get('base') === undefined) {
@@ -111,12 +115,16 @@
                 this.shapes[shape.id] = 'r' + i;
                 this.valueShapes['r' + i] = shape.id;
             }
-            shape = this.renderPerformance().append();
-            this.shapes[shape.id] = 'p1';
-            this.valueShapes.p1 = shape.id;
-            shape = this.renderTarget().append();
-            this.shapes[shape.id] = 't0';
-            this.valueShapes.t0 = shape.id;
+            if (this.values[1] !== null) {
+                shape = this.renderPerformance().append();
+                this.shapes[shape.id] = 'p1';
+                this.valueShapes.p1 = shape.id;
+            }
+            if (this.values[0] !== null) {
+                shape = this.renderTarget().append();
+                this.shapes[shape.id] = 't0';
+                this.valueShapes.t0 = shape.id;
+            }
             target.render();
         }
     });

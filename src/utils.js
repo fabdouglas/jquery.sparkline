@@ -106,14 +106,21 @@
             if (values.length == 1) {
               ret = values[0];
             } else if (values.length == 2) {
-              ret = (values[0] + values[1]) / 2
+              ret = (values[0] + values[1]) / 2;
             } else {
-              ret = (values.length % 2 && values.length > 1) ? values[vl] : (values[vl] + values[vl + 1]) / 2;
+              ret = (values.length % 2 && values.length > 1) ? values[vl] : (values[vl - 1] + values[vl]) / 2;
             }
             return ret;
         } else {
-            vl = Math.floor(values.length / 4);
-            return (values.length % 2 && values.length > 1) ? (values[vl * q] + values[vl * q + 1]) / 2 : values[vl * q];
+            if (values.length == 1) {
+              ret = values[0];
+            } else if (values.length % 2) { // odd
+                vl = (values.length * q + q) / 4;
+                return (vl % 1 && values.length > 1) ? (values[Math.floor(vl)] + values[Math.floor(vl) - 1]) / 2 : values[vl - 1];
+            } else { //even
+                vl = (values.length * q + 2) / 4;
+                return (vl % 1) ? (values[Math.floor(vl)] + values[Math.floor(vl) - 1]) / 2 :  values[vl - 1];
+            }
         }
     };
 
@@ -181,7 +188,8 @@
     all = function (val, arr, ignoreNull) {
         var i;
         for (i = arr.length; i--; ) {
-            if (arr[i] !== val || (!ignoreNull && val === null)) {
+            if (ignoreNull && arr[i] === null) continue;
+            if (arr[i] !== val) {
                 return false;
             }
         }
