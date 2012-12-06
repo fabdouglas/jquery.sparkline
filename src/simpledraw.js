@@ -10,9 +10,9 @@
         if (height === undefined) {
             height = $(this).innerHeight();
         }
-        if ($.browser.hasCanvas) {
+        if ($.support.hasCanvas) {
             target = new VCanvas_canvas(width, height, this, interact);
-        } else if ($.browser.msie) {
+        } else if ($.support.hasVML) {
             target = new VCanvas_vml(width, height, this);
         } else {
             return false;
