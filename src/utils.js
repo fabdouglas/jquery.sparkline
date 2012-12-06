@@ -98,23 +98,55 @@
         return val;
     };
 
-    quartile = function (values, q) {
-        var vl;
-        if (q === 2) {
-            vl = Math.floor(values.length / 2);
-            var ret;
-            if (values.length == 1) {
-              ret = values[0];
-            } else if (values.length == 2) {
-              ret = (values[0] + values[1]) / 2
-            } else {
-              ret = (values.length % 2 && values.length > 1) ? values[vl] : (values[vl] + values[vl + 1]) / 2;
-            }
-            return ret;
-        } else {
-            vl = Math.floor(values.length / 4);
-            return (values.length % 2 && values.length > 1) ? (values[vl * q] + values[vl * q + 1]) / 2 : values[vl * q];
+    median = function (values) {
+        var ret, idx;
+        if (!(values.length % 2)) {
+            var v1, v2;
+            idx = values.length / 2;
+            v1 = values[idx - 1];
+            v2 = values[idx];
+            ret = (v1 + v2) / 2;
         }
+        else {
+            idx = parseInt(values.length / 2)
+            ret = values[idx]
+        }
+
+        return { 'm': ret, 'idx': idx };
+    };
+
+    quartile = function (values, q) {
+        var ret, m, med;
+        m = median(values);
+
+        if (q === 2) {
+            ret = m.m;
+        }
+        else {
+            var arr = new Array();
+            med = m.m
+
+            if (med != null) {
+                var i = 0;
+                if (q === 1) {
+                    while (i < m.idx) {
+                      arr[i] = values[i];
+                      i ++;
+                    }
+                }
+                else if (q === 3) {
+                    var j = values.length - 1;
+                    while (j > m.idx) {
+                        arr[i] = values[j];
+                        i ++;
+                        j --;
+                    }
+                }
+            }
+            m = median(arr);
+            ret = m.m;
+        }
+        return ret;
     };
 
     normalizeValue = function (val) {
