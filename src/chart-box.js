@@ -172,7 +172,7 @@
                 Math.round((q2 - minValue) * unitSize + canvasLeft),
                 Math.round(canvasHeight * 0.9),
                 options.get('medianColor'),
-                options.get('lineWidth')).append();
+                options.get('medianWidth')).append();
             if (typeof options.get('target') == 'number') {
                 size = Math.ceil(options.get('spotRadius'));
                 var targetVal = options.get('target');
