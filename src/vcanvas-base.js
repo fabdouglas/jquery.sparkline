@@ -40,7 +40,7 @@
         },
 
         drawLine: function (x1, y1, x2, y2, lineColor, lineWidth) {
-            return this.drawShape([[x1, y1], [x2, y2]], lineColor, lineWidth);
+            return this.drawShape([[x1, y1], [x2, y2]], lineColor, null, lineWidth);
         },
 
         drawShape: function (path, lineColor, fillColor, lineWidth) {
@@ -55,8 +55,8 @@
             return this._genShape('PieSlice', [x, y, radius, startAngle, endAngle, lineColor, fillColor]);
         },
 
-        drawRect: function (x, y, width, height, lineColor, fillColor, radius) {
-            return this._genShape('Rect', [x, y, width, height, lineColor, fillColor, radius]);
+        drawRect: function (x, y, width, height, lineColor, fillColor, lineWidth, radius) {
+            return this._genShape('Rect', [x, y, width, height, lineColor, fillColor, lineWidth, radius]);
         },
 
         getElement: function () {
