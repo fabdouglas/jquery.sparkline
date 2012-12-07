@@ -136,10 +136,14 @@
                 options.get('lineWidth'),
                 options.get('cornerRadius')).append();
             // left whisker
+            var rightEnd = q1 - minValue;
+            if (options.get('strikeThrough'))
+              rightEnd = rwhisker - minValue;
+
             target.drawLine(
                 Math.round((lwhisker - minValue) * unitSize + canvasLeft),
                 Math.round(canvasHeight / 2),
-                Math.round((q1 - minValue) * unitSize + canvasLeft),
+                Math.round(rightEnd * unitSize + canvasLeft),
                 Math.round(canvasHeight / 2),
                 options.get('lineColor'),
                 options.get('lineWidth')).append();
@@ -151,12 +155,15 @@
                 options.get('whiskerColor'),
                 options.get('lineWidth')).append();
             // right whisker
-            target.drawLine(Math.round((rwhisker - minValue) * unitSize + canvasLeft),
-                Math.round(canvasHeight / 2),
-                Math.round((q3 - minValue) * unitSize + canvasLeft),
-                Math.round(canvasHeight / 2),
-                options.get('lineColor'),
-                options.get('lineWidth')).append();
+            if (!options.get('strikeThrough'))
+            {
+              target.drawLine(Math.round((rwhisker - minValue) * unitSize + canvasLeft),
+                  Math.round(canvasHeight / 2),
+                  Math.round((q3 - minValue) * unitSize + canvasLeft),
+                  Math.round(canvasHeight / 2),
+                  options.get('lineColor'),
+                  options.get('lineWidth')).append();
+            }
             target.drawLine(
                 Math.round((rwhisker - minValue) * unitSize + canvasLeft),
                 Math.round(canvasHeight / 4),
