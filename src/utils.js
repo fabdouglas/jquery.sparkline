@@ -133,6 +133,8 @@
                       arr[i] = values[i];
                       i ++;
                     }
+                    if (!arr.length)
+                      arr = [ values[0] ]
                 }
                 else if (q === 3) {
                     var j = values.length - 1;
@@ -141,6 +143,8 @@
                         i ++;
                         j --;
                     }
+                    if (!arr.length)
+                      arr = [ values[values.length - 1] ]
                 }
             }
             m = median(arr);
