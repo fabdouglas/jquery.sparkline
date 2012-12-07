@@ -220,7 +220,7 @@
             var currentRegion = this.currentRegion,
                 highlightEnabled = !this.options.get('disableHighlight'),
                 newRegion;
-            var cW = $('canvas',this.el).width() + parseInt($('canvas',this.el).css('padding-left'))
+            var cW = $('canvas',this.el).width() + parseInt($('canvas',this.el).css('padding-left')) + parseInt($('canvas',this.el).css('padding-right'))
             // if (x > this.canvasWidth || y > this.canvasHeight || x < 0 || y < 0) {
             if (x > cW || y > this.canvasHeight || x < 0 || y < 0) {
                 return null;
