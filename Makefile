@@ -3,7 +3,8 @@ DIST_DIR = dist
 COMPILER ?= `which uglifyjs` --no-copyright
 
 
-SRC_FILES = $(SRC_DIR)/header.js\
+SRC_FILES = $(SRC_DIR)/rainbowvis.js\
+	$(SRC_DIR)/header.js\
 	$(SRC_DIR)/defaults.js\
 	$(SRC_DIR)/utils.js\
 	$(SRC_DIR)/simpledraw.js\
