@@ -53,7 +53,7 @@
                 maxValue = options.get('chartRangeMax') === undefined ? Math.max.apply(Math, values) : options.get('chartRangeMax'),
                 canvasLeft = 0,
                 lwhisker, loutlier, iqr, q1, q2, q3, rwhisker, routlier, i,
-                size, unitSize;
+                size, unitSize, unitOffset;
 
             if (!box._super.render.call(this)) {
                 return;
@@ -104,11 +104,16 @@
             this.loutlier = loutlier;
             this.routlier = routlier;
 
-            unitSize = canvasWidth / (maxValue - minValue + 1);
+            // Non-zero unit offset can throw off the plotting if it is not
+            // required to avoid a division by zero.
+            unitOffset = 0.0;
+            if ( ( maxValue - minValue ) == 0.0 ) { unitOffset = 1.0; }
+
+            unitSize = canvasWidth / (maxValue - minValue + unitOffset );
             if (options.get('showOutliers')) {
                 canvasLeft = Math.ceil(options.get('spotRadius'));
                 canvasWidth -= 2 * Math.ceil(options.get('spotRadius'));
-                unitSize = canvasWidth / (maxValue - minValue + 1);
+                unitSize = canvasWidth / (maxValue - minValue + unitOffset);
                 if (loutlier < lwhisker) {
                     target.drawCircle((loutlier - minValue) * unitSize + canvasLeft,
                         canvasHeight / 2,
