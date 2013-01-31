@@ -72,7 +72,7 @@
                 negBarColor: '#f44',
                 zeroBarColor: '#999',
                 colorMap: {},
-                tooltipFormat: new SPFormat('<span style="color: {{color}}">&#9679;</span> {{value:map}}'),
+                tooltipFormat: new SPFormat('<span style="color: {{color}}">&#9679;</span> {{prefix}}{{value:map}}{{suffix}}'),
                 tooltipValueLookups: { map: { '-1': 'Loss', '0': 'Draw', '1': 'Win' } }
             },
             // Defaults for discrete charts
@@ -102,7 +102,7 @@
                     '#dd4477', '#0099c6', '#990099'],
                 borderWidth: 0,
                 borderColor: '#000',
-                tooltipFormat: new SPFormat('<span style="color: {{color}}">&#9679;</span> {{value}} ({{percent.1}}%)')
+                tooltipFormat: new SPFormat('<span style="color: {{color}}">&#9679;</span> {{prefix}}{{value}} ({{percent.1}}%){{suffix}}')
             },
             // Defaults for box plots
             box: {
