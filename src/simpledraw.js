@@ -10,9 +10,9 @@
         if (height === undefined) {
             height = $(this).innerHeight();
         }
-        if ($.support.hasCanvas) {
+        if ($.fn.sparkline.hasCanvas) {
             target = new VCanvas_canvas(width, height, this, interact);
-        } else if ($.support.hasVML) {
+        } else if ($.fn.sparkline.hasVML) {
             target = new VCanvas_vml(width, height, this);
         } else {
             return false;
