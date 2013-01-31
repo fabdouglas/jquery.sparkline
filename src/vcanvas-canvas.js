@@ -43,10 +43,9 @@
                 i, plen;
             if (!radius)
               radius = 0;
-
             context.beginPath();
             if (path.length > 2) {
-              if ((path[1][1] - path[0][1]) < radius)
+              if ((path[1][0] - path[0][0]) < radius)
                 radius = 0
               // this is a rectangle
               context.moveTo(path[0][0] + radius + 0.5, path[0][1] + 0.5);
@@ -118,7 +117,7 @@
             }
         },
 
-        _drawRect: function (shapeid, x, y, width, height, lineColor, fillColor, radius) {
+        _drawRect: function (shapeid, x, y, width, height, lineColor, fillColor, lineWidth, radius) {
             return this._drawShape(shapeid, [[x, y], [x + width, y], [x + width, y + height], [x, y + height], [x, y]], lineColor, fillColor, null, radius);
         },
 
