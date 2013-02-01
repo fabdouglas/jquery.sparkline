@@ -26,17 +26,22 @@ SRC_FILES = $(SRC_DIR)/header.js\
 VERSION = $(shell cat version.txt)
 
 all: jqs-gzip jqs-min-gzip Changelog.txt
-	cp Changelog.txt dist/
+	cp Changelog.txt ${DIST_DIR}/
 
-jqs: ${SRC_FILES}
+jqs: ${DIST_DIR}/jquery.sparkline.js
+
+${DIST_DIR}/jquery.sparkline.js: ${SRC_FILES}
+	+@[ -d ${DIST_DIR} ] || mkdir ${DIST_DIR}
 	cat ${SRC_FILES} | sed 's/@VERSION@/${VERSION}/'  >${DIST_DIR}/jquery.sparkline.js
 
-jqs-min: jqs
-	cat minheader.txt | sed 's/@VERSION@/${VERSION}/' >dist/jquery.sparkline.min.js
-	${COMPILER} dist/jquery.sparkline.js  >>dist/jquery.sparkline.min.js
+jqs-min: ${DIST_DIR}/jquery.sparkline.min.js
 
-jqs-gzip: jqs
-	gzip -9 < dist/jquery.sparkline.js >dist/jquery.sparkline.js.gz
-	
-jqs-min-gzip: jqs-min
-	gzip -9 < dist/jquery.sparkline.min.js >dist/jquery.sparkline.min.js.gz
+${DIST_DIR}/jquery.sparkline.min.js: ${DIST_DIR}/jquery.sparkline.js
+	cat minheader.txt | sed 's/@VERSION@/${VERSION}/' >${DIST_DIR}/jquery.sparkline.min.js
+	${COMPILER} ${DIST_DIR}/jquery.sparkline.js  >>${DIST_DIR}/jquery.sparkline.min.js
+
+jqs-gzip: ${DIST_DIR}/jquery.sparkline.js
+	gzip -9 < ${DIST_DIR}/jquery.sparkline.js >${DIST_DIR}/jquery.sparkline.js.gz
+
+jqs-min-gzip: ${DIST_DIR}/jquery.sparkline.min.js
+	gzip -9 < ${DIST_DIR}/jquery.sparkline.min.js >${DIST_DIR}/jquery.sparkline.min.js.gz
