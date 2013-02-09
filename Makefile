@@ -12,6 +12,7 @@ SRC_FILES = $(SRC_DIR)/header.js\
 	$(SRC_DIR)/base.js\
 	$(SRC_DIR)/chart-line.js\
 	$(SRC_DIR)/chart-bar.js\
+	$(SRC_DIR)/chart-timeline.js\
 	$(SRC_DIR)/chart-tristate.js\
 	$(SRC_DIR)/chart-discrete.js\
 	$(SRC_DIR)/chart-bullet.js\

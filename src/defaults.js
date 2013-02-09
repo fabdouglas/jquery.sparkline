@@ -64,6 +64,24 @@
                 colorMap: undefined,
                 tooltipFormat: new SPFormat('<span style="color: {{color}}">&#9679;</span> {{prefix}}{{value}}{{suffix}}')
             },
+            // Defaults for timeline charts
+            timeline: {
+                width: 120,
+                height: 3,
+                lineColor: '#6792c6',
+                fillColor: '#bad7fb',
+                orientation: 'horizontal', // or 'vertical'
+                // number of minutes to modulate time markers from begin option
+                timeMarkInterval: 0,
+                // minimum date/time to show in timeline
+                begin: new Date(2000, 1, 1, 0, 0),
+                // maximum date/time to show in timeline
+                finish: new Date(2000, 1, 1, 23, 59),
+                // allow user to provide their own date parsing abilities
+                // data must provide begin, finish, title and color hash object
+                init: function (data) { return {begin: new Date(data.begin), finish: new Date(data.finish), title: data.title, color: data.color}; },
+                tooltipFormat: new SPFormat('<span style="color: {{color}}">&#9679;</span> {{title}}: {{begin}} / {{finish}}')
+            },
             // Defaults for tristate charts
             tristate: {
                 barWidth: 4,
