@@ -1,7 +1,8 @@
     // Setup a very simple "virtual canvas" to make drawing the few shapes we need easier
     // This is accessible as $(foo).simpledraw()
 
-    if ($.browser.msie && !document.namespaces.v) {
+    // CUSTOM MOD: IE10 fix
+    if ($.browser.msie && document.namespaces && !document.namespaces.v) {
         document.namespaces.add('v', 'urn:schemas-microsoft-com:vml', '#default#VML');
     }
 
@@ -40,6 +41,7 @@
         },
 
         drawLine: function (x1, y1, x2, y2, lineColor, lineWidth) {
+            // CUSTOM MOD: line width added
             return this.drawShape([[x1, y1], [x2, y2]], lineColor, null, lineWidth);
         },
 
@@ -55,6 +57,7 @@
             return this._genShape('PieSlice', [x, y, radius, startAngle, endAngle, lineColor, fillColor]);
         },
 
+        // CUSTOM MOD: line width / radius added
         drawRect: function (x, y, width, height, lineColor, fillColor, lineWidth, radius) {
             return this._genShape('Rect', [x, y, width, height, lineColor, fillColor, lineWidth, radius]);
         },

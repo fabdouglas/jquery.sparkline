@@ -2,7 +2,7 @@ SRC_DIR = src
 DIST_DIR = dist
 COMPILER ?= `which uglifyjs` --no-copyright --unsafe
 
-
+# CUSTOM MOD: order of files
 SRC_FILES = $(SRC_DIR)/header.js\
 	$(SRC_DIR)/utils.js\
 	$(SRC_DIR)/defaults.js\
@@ -37,6 +37,6 @@ jqs-min: jqs
 
 jqs-gzip: jqs
 	gzip -9 < dist/jquery.sparkline.js >dist/jquery.sparkline.js.gz
-	
+
 jqs-min-gzip: jqs-min
 	gzip -9 < dist/jquery.sparkline.min.js >dist/jquery.sparkline.min.js.gz

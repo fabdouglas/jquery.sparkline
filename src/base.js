@@ -220,6 +220,7 @@
             var currentRegion = this.currentRegion,
                 highlightEnabled = !this.options.get('disableHighlight'),
                 newRegion;
+            // CUSTOM MOD: proper hover detection considering padding as well
             var cW = $('canvas',this.el).width() + parseInt($('canvas',this.el).css('padding-left')) + parseInt($('canvas',this.el).css('padding-right'))
             // if (x > this.canvasWidth || y > this.canvasHeight || x < 0 || y < 0) {
             if (x > cW || y > this.canvasHeight || x < 0 || y < 0) {

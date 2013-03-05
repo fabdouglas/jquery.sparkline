@@ -133,9 +133,11 @@
                 Math.round(canvasHeight * 0.8),
                 options.get('boxLineColor'),
                 options.get('boxFillColor'),
+                // CUSTOM MOD: line width & corner radius
                 options.get('lineWidth'),
                 options.get('cornerRadius')).append();
             // left whisker
+            // CUSTOM MOD: strikethrough option
             var rightEnd = q1 - minValue;
             if (options.get('strikeThrough'))
               rightEnd = rwhisker - minValue;
@@ -145,6 +147,7 @@
                 Math.round(canvasHeight / 2),
                 Math.round(rightEnd * unitSize + canvasLeft),
                 Math.round(canvasHeight / 2),
+                // CUSTOM MOD: line width added
                 options.get('lineColor'),
                 options.get('lineWidth')).append();
             target.drawLine(
@@ -153,8 +156,10 @@
                 Math.round((lwhisker - minValue) * unitSize + canvasLeft),
                 Math.round(canvasHeight - canvasHeight / 4),
                 options.get('whiskerColor'),
+                // CUSTOM MOD: line width added
                 options.get('lineWidth')).append();
             // right whisker
+            // CUSTOM MOD: strikethrough option
             if (!options.get('strikeThrough'))
             {
               target.drawLine(Math.round((rwhisker - minValue) * unitSize + canvasLeft),
@@ -162,6 +167,7 @@
                   Math.round((q3 - minValue) * unitSize + canvasLeft),
                   Math.round(canvasHeight / 2),
                   options.get('lineColor'),
+                  // CUSTOM MOD: line width added
                   options.get('lineWidth')).append();
             }
             target.drawLine(
@@ -170,6 +176,7 @@
                 Math.round((rwhisker - minValue) * unitSize + canvasLeft),
                 Math.round(canvasHeight - canvasHeight / 4),
                 options.get('whiskerColor'),
+                // CUSTOM MOD: line width added
                 options.get('lineWidth')).append();
 
             // median line
@@ -178,10 +185,12 @@
                 Math.round(canvasHeight * 0.1),
                 Math.round((q2 - minValue) * unitSize + canvasLeft),
                 Math.round(canvasHeight * 0.9),
+                // CUSTOM MOD: medianwidth option
                 options.get('medianColor'),
                 options.get('medianWidth')).append();
             if (typeof options.get('target') == 'number') {
                 size = Math.ceil(options.get('spotRadius'));
+                // CUSTOM MOD: circle representation of median
                 var targetVal = options.get('target');
                 var targetObj = options.get('targetObj')
                 if (!targetObj || targetObj == 'crosshair') {
