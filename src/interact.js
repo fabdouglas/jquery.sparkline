@@ -99,11 +99,11 @@
                  spcount = splist.length,
                  needsRefresh = false,
                  offset = this.$canvas.offset(),
-                 localX = Math.floor(this.currentPageX - offset.left + 1),
-                 localY = Math.floor(this.currentPageY - offset.top + 1),
+                 localX = Math.round(this.currentPageX - offset.left),
+                 localY = Math.round(this.currentPageY - offset.top),
                  tooltiphtml, sp, i, result, changeEvent;
-	    // localX/localY fix issue #50 with Google Chrome 
-	    // and subpixel rendering
+    	    // localX/localY fix issue #50 with Google Chrome
+    	    // and subpixel rendering
 
             if (!this.over) {
                 return;
