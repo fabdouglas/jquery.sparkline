@@ -274,8 +274,8 @@
                 entries = [],
                 fields, formats, formatlen, fclass, text, i,
                 showFields, showFieldsKey, newFields, fv,
-                formatter, format, fieldlen, j, 
-    	        label_prefix, label_suffix;
+                formatter, format, fieldlen, j,
+                label_prefix, label_suffix;
             if (this.currentRegion === undefined) {
                 return '';
             }
@@ -318,19 +318,19 @@
                     format = new SPFormat(format);
                 }
                 fclass = format.fclass || 'jqsfield';
-		
+
                 for (j = 0; j < fieldlen; j++) {
                     if (!fields[j].isNull || !options.get('tooltipSkipNull')) {
-            			label_prefix = '';
-            			label_suffix = '';
-            			if (options.get('tooltipPrefixBinLabels')
-            			    && (options.get('tooltipPrefixBinLabels').length > fields[j].offset)) {
-            			    label_prefix = options.get('tooltipPrefixBinLabels')[fields[j].offset];
-            			} 
-            			if (options.get('tooltipSuffixBinLabels') 
-            			    && (options.get('tooltipSuffixBinLabels').length > fields[j].offset)) {
-            			    label_suffix = options.get('tooltipSuffixBinLabels')[fields[j].offset];
-            			}
+                        label_prefix = '';
+                        label_suffix = '';
+                        if (options.get('tooltipPrefixBinLabels')
+                            && (options.get('tooltipPrefixBinLabels').length > fields[j].offset)) {
+                            label_prefix = options.get('tooltipPrefixBinLabels')[fields[j].offset];
+                        }
+                        if (options.get('tooltipSuffixBinLabels')
+                            && (options.get('tooltipSuffixBinLabels').length > fields[j].offset)) {
+                            label_suffix = options.get('tooltipSuffixBinLabels')[fields[j].offset];
+                        }
                         $.extend(fields[j], {
                             prefix: label_prefix + options.get('tooltipPrefix'),
                             suffix: options.get('tooltipSuffix') + label_suffix

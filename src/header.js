@@ -109,8 +109,8 @@
 *   tooltipSuffix - A string to append to each field displayed in a tooltip
 *   tooltipPrefixBinLabels - An array of Bin Labels for each offset value to add as the start
 *                            of the tooltip prefix.  Example:
-*        var giants_game_results = [1,-1,1,-1,-1,-1,1,1,1,-1,1,-1,-1,1,1,1,1,1,1,1], 
-*            giants_game_dates  = ["9/30", "10/1", "10/2", "10/3", "10/6", "10/7", "10/9", "10/10", "10/11", "10/14", "10/15", 
+*        var giants_game_results = [1,-1,1,-1,-1,-1,1,1,1,-1,1,-1,-1,1,1,1,1,1,1,1],
+*            giants_game_dates  = ["9/30", "10/1", "10/2", "10/3", "10/6", "10/7", "10/9", "10/10", "10/11", "10/14", "10/15",
 *                                  "10/17", "10/18", "10/19", "10/21", "10/22", "10/24", "10/25", "10/27", "10/28"];
 *        $('#giants').sparkline(giants_results, {type: 'tristate', tooltipPrefixBinLabels: giants_dates, tooltipPrefix: ' - '};
 *   tooltipSuffixBinLabels - An array of Bin Labels for each offset value to add as the end
@@ -214,10 +214,10 @@
 
 (function(factory) {
     if(typeof define === 'function' && define.amd) {
-		define(['jquery'], factory);
-	}
-	else if ( jQuery && !jQuery.fn.sparkline ) {
-		factory(jQuery);
+        define(['jquery'], factory);
+    }
+    else if ( jQuery && !jQuery.fn.sparkline ) {
+        factory(jQuery);
     }
 }
 (function($) {

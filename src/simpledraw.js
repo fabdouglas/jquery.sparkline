@@ -4,7 +4,7 @@
         if (useExisting && (target = this.data('_jqs_vcanvas'))) {
             return target;
         }
-        
+
         if ($.fn.sparkline.canvas === false) {
             // We've already determined that neither Canvas nor VML are available
             return false;
@@ -37,7 +37,7 @@
         }
 
         target = $.fn.sparkline.canvas(width, height, this, interact);
-        
+
         mhandler = $(this).data('_jqs_mhandler');
         if (mhandler) {
             mhandler.registerCanvas(target);
