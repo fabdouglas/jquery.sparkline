@@ -5,31 +5,24 @@
             return target;
         }
         
-        if ($.fn.sparkline.canvas === false)
-        {
+        if ($.fn.sparkline.canvas === false) {
             // We've already determined that neither Canvas nor VML are available
             return false;
-        }
-        else if ($.fn.sparkline.canvas === undefined)
-        {
+        } else if ($.fn.sparkline.canvas === undefined) {
             // No function defined yet -- need to see if we support Canvas or VML
             var el = document.createElement('canvas');
-            if (!!(el.getContext && el.getContext('2d')))
-            {
+            if (!!(el.getContext && el.getContext('2d'))) {
                 // Canvas is available
                 $.fn.sparkline.canvas = function(width, height, target, interact) {
                     return new VCanvas_canvas(width, height, target, interact);
                 };
-            }
-            else if (document.namespaces && !document.namespaces.v) {
+            } else if (document.namespaces && !document.namespaces.v) {
                 // VML is available
                 document.namespaces.add('v', 'urn:schemas-microsoft-com:vml', '#default#VML');
                 $.fn.sparkline.canvas = function(width, height, target, interact) {
                     return new VCanvas_vml(width, height, target);
                 };
-            }
-            else
-            {
+            } else {
                 // Neither Canvas nor VML are available
                 $.fn.sparkline.canvas = false;
                 return false;
