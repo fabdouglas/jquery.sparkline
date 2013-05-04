@@ -105,6 +105,9 @@
             } else {
                 this.pixelWidth = $(canvas).width();
             }
+            var ratio = window.hasOwnProperty('devicePixelRatio') ? window.devicePixelRatio : 1;
+            this.pixelWidth *= ratio;
+            this.pixelHeight *= ratio;
         },
 
         /**
