@@ -133,12 +133,19 @@
             if ($.isArray(options.get('colorMap'))) {
                 this.colorMapByIndex = options.get('colorMap');
                 this.colorMapByValue = null;
+                this.colorMapByFunction = null;
+	    } else if ($.isFunction(options.get('colorMap'))) {
+	        // function(index,value) returns color
+                this.colorMapByIndex = null;
+                this.colorMapByValue = null;
+	        this.colorMapByFunction = options.get('colorMap');
             } else {
                 this.colorMapByIndex = null;
                 this.colorMapByValue = options.get('colorMap');
                 if (this.colorMapByValue && this.colorMapByValue.get === undefined) {
                     this.colorMapByValue = new RangeMap(this.colorMapByValue);
                 }
+                this.colorMapByFunction = null;
             }
 
             this.range = range;
@@ -169,6 +176,7 @@
         calcColor: function (stacknum, value, valuenum) {
             var colorMapByIndex = this.colorMapByIndex,
                 colorMapByValue = this.colorMapByValue,
+                colorMapByFunction = this.colorMapByFunction,
                 options = this.options,
                 color, newColor;
             if (this.stacked) {
@@ -183,6 +191,8 @@
                 color = newColor;
             } else if (colorMapByIndex && colorMapByIndex.length > valuenum) {
                 color = colorMapByIndex[valuenum];
+            } else if (colorMapByFunction) {
+                color = colorMapByFunction(valuenum, value);
             }
             return $.isArray(color) ? color[stacknum % color.length] : color;
         },
