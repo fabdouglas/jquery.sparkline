@@ -202,6 +202,30 @@
         },
 
         /**
+         * Setup colorMap from options
+         */
+        initColorMap: function() {
+            var colorMap = this.options.get('colorMap');
+	    if ($.isFunction(colorMap)) {
+                this.colorMapFunction = colorMap;
+            } else if ($.isArray(colorMap)) {
+                this.colorMapFunction = function(sparkline, options, index, value) {
+                    if (index < colorMap.length) {
+                        return colorMap[index];
+                    }
+                    // else undefined
+                };
+            } else if (colorMap) {
+                if (colorMap.get === undefined) {
+                    colorMap = new RangeMap(colorMap); 
+                }
+                this.colorMapFunction = function(sparkline, options, index, value) {
+                    return colorMap.get(value);
+                }
+            }
+        },
+
+        /**
          * Actually render the chart to the canvas
          */
         render: function () {
