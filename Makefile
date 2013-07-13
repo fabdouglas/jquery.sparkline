@@ -1,6 +1,7 @@
 SRC_DIR = src
 DIST_DIR = dist
-COMPILER ?= `which uglifyjs` --no-copyright
+COMPILER = cat
+COMPILER ?= `which uglifyjs1` --no-copyright
 
 
 SRC_FILES = $(SRC_DIR)/header.js\
