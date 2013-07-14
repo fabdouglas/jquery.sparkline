@@ -221,8 +221,9 @@
 (function($) {
     'use strict';
 
+    // CUSTOM MOD: median var added
     var UNSET_OPTION = {},
-        getDefaults, createClass, SPFormat, clipval, quartile, normalizeValue, normalizeValues,
+        getDefaults, createClass, SPFormat, clipval, median, quartile, normalizeValue, normalizeValues,
         remove, isNumber, all, sum, addCSS, ensureArray, formatNumber, RangeMap,
         MouseHandler, Tooltip, barHighlightMixin,
         line, bar, tristate, discrete, bullet, pie, box, timeline, defaultStyles, initStyles,
