@@ -151,6 +151,7 @@
             this.container = options.get('tooltipContainer') || document.body;
             this.tooltipOffsetX = options.get('tooltipOffsetX', 10);
             this.tooltipOffsetY = options.get('tooltipOffsetY', 12);
+            this.displayOnLeft  = options.get('toolTipPosition') === 'left';
             // remove any previous lingering tooltip
             $('#jqssizetip').remove();
             $('#jqstooltip').remove();
@@ -182,6 +183,9 @@
 
         getSize: function (content) {
             this.sizetip.html(content).appendTo(this.container);
+            var lpadding = parseInt(this.sizetip.css('padding-left'),10);
+            var rpadding = parseInt(this.sizetip.css('padding-right'),10);
+            this.padding = lpadding + rpadding + 1;
             this.width = this.sizetip.width() + 1;
             this.height = this.sizetip.height();
             this.sizetip.remove();
@@ -223,10 +227,14 @@
             }
 
             y -= this.height + this.tooltipOffsetY;
-            x += this.tooltipOffsetX;
-
             if (y < this.scrollTop) {
                 y = this.scrollTop;
+            }
+
+            if(this.displayOnLeft) {
+                x -= this.tooltipOffsetX + this.width + this.padding;
+            } else {
+                x += this.tooltipOffsetX;
             }
             if (x < this.scrollLeft) {
                 x = this.scrollLeft;
