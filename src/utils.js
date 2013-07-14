@@ -98,6 +98,7 @@
         return val;
     };
 
+    // CUSTOM MOD: completely new median func
     median = function (values) {
         var ret, idx;
         if (!(values.length % 2)) {
@@ -115,6 +116,7 @@
         return { 'm': ret, 'idx': idx };
     };
 
+    // CUSTOM MOD: completely rewritten quartile func
     quartile = function (values, q) {
         var ret, m, med;
         m = median(values);

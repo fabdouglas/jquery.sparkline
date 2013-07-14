@@ -38,12 +38,14 @@
             this.currentTargetShapeId = undefined;
         },
 
+        // CUSTOM MOD: radius added
         _drawShape: function (shapeid, path, lineColor, fillColor, lineWidth, radius) {
             var context = this._getContext(lineColor, fillColor, lineWidth),
                 i, plen;
             if (!radius)
               radius = 0;
             context.beginPath();
+            // CUSTOM MOD: corner radius drawing added
             if (path.length > 2) {
               if ((path[1][0] - path[0][0]) < radius)
                 radius = 0
@@ -117,6 +119,7 @@
             }
         },
 
+        // CUSTOM MOD: radius added
         _drawRect: function (shapeid, x, y, width, height, lineColor, fillColor, lineWidth, radius) {
             return this._drawShape(shapeid, [[x, y], [x + width, y], [x + width, y + height], [x, y + height], [x, y]], lineColor, fillColor, null, radius);
         },

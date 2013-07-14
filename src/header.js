@@ -107,6 +107,14 @@
 *       to control the format of the tooltip
 *   tooltipPrefix - A string to prepend to each field displayed in a tooltip
 *   tooltipSuffix - A string to append to each field displayed in a tooltip
+*   tooltipPrefixBinLabels - An array of Bin Labels for each offset value to add as the start
+*                            of the tooltip prefix.  Example:
+*        var giants_game_results = [1,-1,1,-1,-1,-1,1,1,1,-1,1,-1,-1,1,1,1,1,1,1,1],
+*            giants_game_dates  = ["9/30", "10/1", "10/2", "10/3", "10/6", "10/7", "10/9", "10/10", "10/11", "10/14", "10/15",
+*                                  "10/17", "10/18", "10/19", "10/21", "10/22", "10/24", "10/25", "10/27", "10/28"];
+*        $('#giants').sparkline(giants_results, {type: 'tristate', tooltipPrefixBinLabels: giants_dates, tooltipPrefix: ' - '};
+*   tooltipSuffixBinLabels - An array of Bin Labels for each offset value to add as the end
+*                            of the tooltip suffix.
 *   tooltipSkipNull - If true then null values will not have a tooltip displayed (defaults to true)
 *   tooltipValueLookups - An object or range map to map field values to tooltip strings
 *       (eg. to map -1 to "Lost", 0 to "Draw", and 1 to "Win")
@@ -202,21 +210,22 @@
 
 /*jslint regexp: true, browser: true, jquery: true, white: true, nomen: false, plusplus: false, maxerr: 500, indent: 4 */
 
+(function(document, Math, undefined) { // performance/minified-size optimization
 (function(factory) {
     if(typeof define === 'function' && define.amd) {
-		define(['jquery'], factory);
-	}
-	else {
-		factory(jQuery);
-	}
+        define(['jquery'], factory);
+    } else if (jQuery && !jQuery.fn.sparkline) {
+        factory(jQuery);
+    }
 }
 (function($) {
     'use strict';
 
+    // CUSTOM MOD: median var added
     var UNSET_OPTION = {},
         getDefaults, createClass, SPFormat, clipval, median, quartile, normalizeValue, normalizeValues,
         remove, isNumber, all, sum, addCSS, ensureArray, formatNumber, RangeMap,
         MouseHandler, Tooltip, barHighlightMixin,
-        line, bar, tristate, discrete, bullet, pie, box, defaultStyles, initStyles,
+        line, bar, tristate, discrete, bullet, pie, box, timeline, defaultStyles, initStyles,
         VShape, VCanvas_base, VCanvas_canvas, VCanvas_vml, pending, shapeCount = 0;
 
