@@ -210,13 +210,11 @@
 
 /*jslint regexp: true, browser: true, jquery: true, white: true, nomen: false, plusplus: false, maxerr: 500, indent: 4 */
 
-(function( document, Math, undefined ) {
-
+(function(document, Math, undefined) { // performance/minified-size optimization
 (function(factory) {
     if(typeof define === 'function' && define.amd) {
-        define('jquery.sparkline', ['jquery'], factory);
-    }
-    else if ( jQuery && !jQuery.fn.sparkline ) {
+        define(['jquery'], factory);
+    } else if (jQuery && !jQuery.fn.sparkline) {
         factory(jQuery);
     }
 }

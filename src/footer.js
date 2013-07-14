@@ -1,3 +1,3 @@
 }));
 
-})( document, Math );
+}(document, Math));
