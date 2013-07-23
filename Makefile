@@ -47,3 +47,8 @@ jqs-gzip: ${DIST_DIR}/jquery.sparkline.js
 
 jqs-min-gzip: ${DIST_DIR}/jquery.sparkline.min.js
 	gzip -9 < ${DIST_DIR}/jquery.sparkline.min.js >${DIST_DIR}/jquery.sparkline.min.js.gz
+
+
+clean:
+	-rm -f ${DIST_DIR}/*
+
