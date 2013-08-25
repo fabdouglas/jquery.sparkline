@@ -1,35 +1,28 @@
+all: join-script-files
+
 include ../../build/modules.mk
 
-
 MODULE = sparkline
-SRC_FILES = $(SRC_DIR)/header.js\
-	$(SRC_DIR)/defaults.js\
-	$(SRC_DIR)/utils.js\
-	$(SRC_DIR)/simpledraw.js\
-	$(SRC_DIR)/rangemap.js\
-	$(SRC_DIR)/interact.js\
-	$(SRC_DIR)/base.js\
-	$(SRC_DIR)/chart-line.js\
-	$(SRC_DIR)/chart-bar.js\
-	$(SRC_DIR)/chart-tristate.js\
-	$(SRC_DIR)/chart-discrete.js\
-	$(SRC_DIR)/chart-bullet.js\
-	$(SRC_DIR)/chart-pie.js\
-	$(SRC_DIR)/chart-box.js\
-	$(SRC_DIR)/vcanvas-base.js\
-	$(SRC_DIR)/vcanvas-canvas.js\
-	$(SRC_DIR)/vcanvas-vml.js\
-	$(SRC_DIR)/footer.js
+MODULARIZE_OPTIONS = -jq
+SOURCE_SCRIPT_FOLDER	= ./src
+SOURCE_SCRIPT_FILE_PREFIX = 
+SOURCE_SCRIPT_FILES = $(SOURCE_SCRIPT_FOLDER)/header.js\
+			$(SOURCE_SCRIPT_FOLDER)/defaults.js\
+			$(SOURCE_SCRIPT_FOLDER)/utils.js\
+			$(SOURCE_SCRIPT_FOLDER)/simpledraw.js\
+			$(SOURCE_SCRIPT_FOLDER)/rangemap.js\
+			$(SOURCE_SCRIPT_FOLDER)/interact.js\
+			$(SOURCE_SCRIPT_FOLDER)/base.js\
+			$(SOURCE_SCRIPT_FOLDER)/chart-line.js\
+			$(SOURCE_SCRIPT_FOLDER)/chart-bar.js\
+			$(SOURCE_SCRIPT_FOLDER)/chart-tristate.js\
+			$(SOURCE_SCRIPT_FOLDER)/chart-discrete.js\
+			$(SOURCE_SCRIPT_FOLDER)/chart-bullet.js\
+			$(SOURCE_SCRIPT_FOLDER)/chart-pie.js\
+			$(SOURCE_SCRIPT_FOLDER)/chart-box.js\
+			$(SOURCE_SCRIPT_FOLDER)/vcanvas-base.js\
+			$(SOURCE_SCRIPT_FOLDER)/vcanvas-canvas.js\
+			$(SOURCE_SCRIPT_FOLDER)/vcanvas-vml.js\
+			$(SOURCE_SCRIPT_FOLDER)/footer.js
 
-SRC_DIR 		= src
-PRODUCTION		= ${PRODUCTION_DIR}/${MODULE}.js
-DEVELOPMENT 	= ${DEVELOPMENT_DIR}/${MODULE}.js
-VERSION 		= $(shell cat version.txt)
-DIST 			= dist/${MODULE}.js
 
-all: jqs
-	${MODULARIZE} -jq -n "${MODULE}" ${DIST} > ${DEVELOPMENT}
-	${UGLIFYJS} ${DEVELOPMENT} > ${PRODUCTION}
-
-jqs: ${SRC_FILES}
-	cat ${SRC_FILES} | sed 's/@VERSION@/${VERSION}/' >${DIST}
