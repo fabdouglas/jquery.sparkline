@@ -1,4 +1,4 @@
-all: join-script-files modularize-scripts
+all: join-script-files modularize-script minify-script
 
 include ../../build/modules.mk
 
