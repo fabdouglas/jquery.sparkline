@@ -183,8 +183,8 @@
 
         getSize: function (content) {
             this.sizetip.html(content).appendTo(this.container);
-            var lpadding = parseInt(this.sizetip.css('padding-left'),10);
-            var rpadding = parseInt(this.sizetip.css('padding-right'),10);
+            var lpadding = parseInt(this.sizetip.css('padding-left'), 10);
+            var rpadding = parseInt(this.sizetip.css('padding-right'), 10);
             this.padding = lpadding + rpadding + 1;
             this.width = this.sizetip.width() + 1;
             this.height = this.sizetip.height();
@@ -231,7 +231,7 @@
                 y = this.scrollTop;
             }
 
-            if(this.displayOnLeft) {
+            if (this.displayOnLeft) {
                 x -= this.tooltipOffsetX + this.width + this.padding;
             } else {
                 x += this.tooltipOffsetX;
