@@ -63,14 +63,14 @@
 *   <p>Sparkline: <span class="sparkline">1:1,2.7:4,3.4:6,5:6,6:8,8.7:5,9:3,10:5</span></p>
 *    $('#sparkline1').sparkline([ [1,1], [2.7,4], [3.4,6], [5,6], [6,8], [8.7,5], [9,3], [10,5] ])
 *
-* By default, options should be passed in as teh second argument to the sparkline function:
+* By default, options should be passed in as the second argument to the sparkline function:
 *   $('.sparkline').sparkline([1,2,3,4], {type: 'bar'})
 *
 * Options can also be set by passing them on the tag itself.  This feature is disabled by default though
 * as there's a slight performance overhead:
 *   $('.sparkline').sparkline([1,2,3,4], {enableTagOptions: true})
 *   <p>Sparkline: <span class="sparkline" sparkType="bar" sparkBarColor="red">loading</span></p>
-* Prefix all options supplied as tag attribute with "spark" (configurable by setting tagOptionPrefix)
+* Prefix all options supplied as tag attribute with "spark" (configurable by setting tagOptionsPrefix)
 *
 * Supported options:
 *   lineColor - Color of the line used for the chart
@@ -87,7 +87,7 @@
 *           existing chart is detected.
 *   tagValuesAttribute - Name of tag attribute to check for data values - Defaults to 'values'
 *   enableTagOptions - Whether to check tags for sparkline options
-*   tagOptionPrefix - Prefix used for options supplied as tag attributes - Defaults to 'spark'
+*   tagOptionsPrefix - Prefix used for options supplied as tag attributes - Defaults to 'spark'
 *   disableHiddenCheck - If set to true, then the plugin will assume that charts will never be drawn into a
 *           hidden dom element, avoding a browser reflow
 *   disableInteraction - If set to true then all mouseover/click interaction behaviour will be disabled,
@@ -118,6 +118,7 @@
 *   tooltipSkipNull - If true then null values will not have a tooltip displayed (defaults to true)
 *   tooltipValueLookups - An object or range map to map field values to tooltip strings
 *       (eg. to map -1 to "Lost", 0 to "Draw", and 1 to "Win")
+*   toolTipPosition - Display tooltip to the 'left' or 'right' of the mouse - Defaults to "right"
 *   numberFormatter - Optional callback for formatting numbers in tooltips
 *   numberDigitGroupSep - Character to use for group separator in numbers "1,234" - Defaults to ","
 *   numberDecimalMark - Character to use for the decimal point when formatting numbers - Defaults to "."
@@ -213,7 +214,7 @@
 (function(document, Math, undefined) { // performance/minified-size optimization
 (function(factory) {
     if(typeof define === 'function' && define.amd) {
-        define(['jquery'], factory);
+        define('jquery.sparkline', ['jquery'], factory);
     } else if (jQuery && !jQuery.fn.sparkline) {
         factory(jQuery);
     }
