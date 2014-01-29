@@ -15,7 +15,7 @@
             this.shapes = {};
             this.shapeseq = [];
             this.currentTargetShapeId = undefined;
-            $(this.canvas).css({width: this.pixelWidth, height: this.pixelHeight});
+            //$(this.canvas).css({width: this.pixelWidth, height: this.pixelHeight});
         },
 
         _getContext: function (lineColor, fillColor, lineWidth) {
