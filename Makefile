@@ -5,7 +5,6 @@ COMPILER ?= `which uglifyjs` --no-copyright
 
 # CUSTOM MOD: order of files
 SRC_FILES = \
-	$(SRC_DIR)/rainbowvis.js\
 	$(SRC_DIR)/header.js\
 	$(SRC_DIR)/utils.js\
 	$(SRC_DIR)/defaults.js\
