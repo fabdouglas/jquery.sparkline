@@ -146,6 +146,9 @@
             'padding: 5px;' +
             'border: 1px solid white;' +
             'z-index: 10000;' +
+            '-webkit-box-sizing: content-box;' +
+            '-moz-box-sizing: content-box;' +
+            'box-sizing: content-box;' +
             '}' +
             '.jqsfield { ' +
             'color: white;' +
