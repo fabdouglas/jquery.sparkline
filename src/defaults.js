@@ -168,6 +168,9 @@
             'border: 1px solid white;' +
             'box-sizing: content-box;' +
             'z-index: 10000;' +
+            '-webkit-box-sizing: content-box;' +
+            '-moz-box-sizing: content-box;' +
+            'box-sizing: content-box;' +
             '}' +
             '.jqsfield { ' +
             'color: white;' +
