@@ -150,6 +150,11 @@
         };
     };
 
+    // Bootstrap adds box-sizing that messes with alignment in the tooltip.
+    var box-sizing = '-webkit-box-sizing: content-box !important;' +
+          '-moz-box-sizing: content-box !important;' +
+          'box-sizing: content-box !important;'
+
     // You can have tooltips use a css class other than jqstooltip by specifying tooltipClassname
     defaultStyles = '.jqstooltip { ' +
             'position: absolute;' +
@@ -168,13 +173,14 @@
             'border: 1px solid white;' +
             'box-sizing: content-box;' +
             'z-index: 10000;' +
-            '-webkit-box-sizing: content-box;' +
-            '-moz-box-sizing: content-box;' +
-            'box-sizing: content-box;' +
+            box-sizing +
             '}' +
             '.jqsfield { ' +
             'color: white;' +
             'font: 10px arial, san serif;' +
             'text-align: left;' +
-            '}';
+            '}' +
+            '.jqstooltip:before, .jqstooltip:after { ' +
+            box-sizing +
+            '}'
 
