@@ -151,7 +151,7 @@
     };
 
     // Bootstrap adds box-sizing that messes with alignment in the tooltip.
-    var box-sizing = '-webkit-box-sizing: content-box !important;' +
+    var box_sizing = '-webkit-box-sizing: content-box !important;' +
           '-moz-box-sizing: content-box !important;' +
           'box-sizing: content-box !important;'
 
@@ -171,9 +171,8 @@
             'white-space: nowrap;' +
             'padding: 5px;' +
             'border: 1px solid white;' +
-            'box-sizing: content-box;' +
             'z-index: 10000;' +
-            box-sizing +
+            box_sizing +
             '}' +
             '.jqsfield { ' +
             'color: white;' +
@@ -181,6 +180,6 @@
             'text-align: left;' +
             '}' +
             '.jqstooltip:before, .jqstooltip:after { ' +
-            box-sizing +
-            '}'
+            box_sizing +
+            '}';
 
