@@ -53,6 +53,7 @@ module.exports = function (grunt) {
           './src/base.js',
           './src/chart-line.js',
           './src/chart-bar.js',
+          './src/chart-stack.js',
           './src/chart-tristate.js',
           './src/chart-discrete.js',
           './src/chart-bullet.js',
