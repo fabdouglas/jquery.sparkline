@@ -12,7 +12,7 @@
                 chartRangeClip = options.get('chartRangeClip'),
                 stackMin = Infinity,
                 stackMax = -Infinity,
-                isStackString, groupMin, groupMax, stackRanges,
+                isStackString, groupMin, groupMax, stackRanges, stackRangesNeg, stackTotals, actualMin, actualMax,
                 numValues, i, vlen, range, zeroAxis, xaxisOffset, min, max, clipMin, clipMax,
                 stacked, vlist, j, slen, svals, val, yoffset, yMaxCalc, canvasHeightEf;
             bar._super.init.call(this, el, values, options, width, height);
@@ -51,11 +51,15 @@
                 clipMin = chartRangeMin === undefined ? -Infinity : chartRangeMin;
                 clipMax = chartRangeMax === undefined ? Infinity : chartRangeMax;
             }
+			if (stacked) {
+				actualMin = chartRangeMin === undefined ? stackMin : Math.min(stackMin, chartRangeMin);
+				actualMax = chartRangeMax === undefined ? stackMax : Math.max(stackMax, chartRangeMax);
+			}
 
             numValues = [];
             stackRanges = stacked ? [] : numValues;
-            var stackTotals = [];
-            var stackRangesNeg = [];
+            stackTotals = [];
+            stackRangesNeg = [];
             for (i = 0, vlen = values.length; i < vlen; i++) {
                 if (stacked) {
                     vlist = values[i];
@@ -75,7 +79,7 @@
                                     stackRanges[i] += val;
                                 }
                             } else {
-                                stackRanges[i] += Math.abs(val - (val < 0 ? stackMax : stackMin));
+                                stackRanges[i] += Math.abs(val - (val < 0 ? actualMax : actualMin));
                             }
                             numValues.push(val);
                         }
@@ -93,11 +97,11 @@
             this.stackMax = stackMax = stacked ? Math.max.apply(Math, stackTotals) : max;
             this.stackMin = stackMin = stacked ? Math.min.apply(Math, numValues) : min;
 
-            if (options.get('chartRangeMin') !== undefined && (options.get('chartRangeClip') || options.get('chartRangeMin') < min)) {
-                min = options.get('chartRangeMin');
+            if (chartRangeMin !== undefined && (chartRangeClip || chartRangeMin < min)) {
+                min = chartRangeMin;
             }
-            if (options.get('chartRangeMax') !== undefined && (options.get('chartRangeClip') || options.get('chartRangeMax') > max)) {
-                max = options.get('chartRangeMax');
+            if (chartRangeMax !== undefined && (chartRangeClip || chartRangeMax > max)) {
+                max = chartRangeMax;
             }
 
             this.zeroAxis = zeroAxis = options.get('zeroAxis', true);
