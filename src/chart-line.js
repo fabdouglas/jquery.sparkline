@@ -121,7 +121,6 @@
             this.xvalues = xvalues;
             this.yvalues = yvalues;
             this.yminmax = yminmax;
-
         },
 
         processRangeOptions: function () {
