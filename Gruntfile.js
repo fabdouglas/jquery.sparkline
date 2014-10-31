@@ -59,6 +59,7 @@ module.exports = function (grunt) {
           './src/chart-bullet.js',
           './src/chart-pie.js',
           './src/chart-box.js',
+          './src/chart-timeline.js',
           './src/vcanvas-base.js',
           './src/vcanvas-canvas.js',
           './src/vcanvas-vml.js',

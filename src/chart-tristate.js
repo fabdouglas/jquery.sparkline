@@ -14,7 +14,9 @@
             this.barSpacing = barSpacing;
             this.totalBarWidth = barWidth + barSpacing;
             this.values = $.map(values, Number);
-            this.width = width = (values.length * barWidth) + ((values.length - 1) * barSpacing);
+            var rawWidth = (values.length * barWidth) + ((values.length - 1) * barSpacing);
+            this.xScale = Math.min(1, rawWidth ? width / rawWidth : 1);
+            this.width = rawWidth * this.xScale; 
 
             this.initColorMap();
             this.initTarget();
@@ -79,7 +81,7 @@
             if (highlight) {
                 color = this.calcHighlightColor(color, options);
             }
-            return target.drawRect(x, y, this.barWidth - 1, height - 1, color, color);
+            return target.drawRect(x * this.xScale, y, (this.barWidth - 1) * this.xScale, height - 1, color, color);
         }
     });
 

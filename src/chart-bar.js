@@ -43,7 +43,9 @@
             this.barWidth = barWidth;
             this.barSpacing = barSpacing;
             this.totalBarWidth = barWidth + barSpacing;
-            this.width = width = (values.length * barWidth) + ((values.length - 1) * barSpacing);
+            var rawWidth = (values.length * barWidth) + ((values.length - 1) * barSpacing);
+            this.xScale = Math.min(1, rawWidth ? width / rawWidth : 1);
+            this.width = rawWidth * this.xScale; 
 
             this.initTarget();
 
@@ -107,7 +109,7 @@
             this.zeroAxis = zeroAxis = options.get('zeroAxis', true);
             if (min <= 0 && max >= 0 && zeroAxis) {
                 xaxisOffset = 0;
-            } else if (zeroAxis == false) {
+            } else if (zeroAxis === false) {
                 xaxisOffset = min;
             } else if (min > 0) {
                 xaxisOffset = min;
@@ -139,6 +141,7 @@
         },
 
         getRegion: function (el, x, y) {
+            x /= this.xScale; 
             var result = Math.floor(x / this.totalBarWidth);
             return (result < 0 || result >= this.values.length) ? undefined : result;
         },
@@ -239,7 +242,7 @@
                 if (highlight) {
                     color = this.calcHighlightColor(color, options);
                 }
-                result.push(target.drawRect(x, y, this.barWidth - 1, height - 1, color, color));
+                result.push(target.drawRect(x * this.xScale, y, (this.barWidth - 1) * this.xScale, height - 1, color, color));
             }
             if (result.length === 1) {
                 return result[0];
