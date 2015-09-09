@@ -221,7 +221,7 @@
                 }
                 this.colorMapFunction = function(sparkline, options, index, value) {
                     return colorMap.get(value);
-                }
+                };
             }
         },
 

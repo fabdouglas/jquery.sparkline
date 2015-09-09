@@ -162,7 +162,7 @@
     // Bootstrap adds box-sizing that messes with alignment in the tooltip.
     var box_sizing = '-webkit-box-sizing: content-box !important;' +
           '-moz-box-sizing: content-box !important;' +
-          'box-sizing: content-box !important;'
+          'box-sizing: content-box !important;';
 
     // You can have tooltips use a css class other than jqstooltip by specifying tooltipClassname
     defaultStyles = '.jqstooltip { ' +
