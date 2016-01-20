@@ -23,8 +23,10 @@
     "jquery": ">=2.1.4"
   },
   "jspm": {
-      "name": "jquery-sparkline",
-      "main": "dist/jquery-sparkline-min.js"
+      "main": "jquery-sparkline"
+      "directories": {
+          "lib": "dist"
+      }
   }
   "devDependencies": {
   }
