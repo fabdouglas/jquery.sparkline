@@ -1,6 +1,8 @@
 jQuery Sparkline Plugin ChangeLog
 http://omnipotent.net/jquery.sparkline/
 
++ csf test change pickup
+
 2.1.4
 
 + Merge changes from GerHobbelt/jquery.sparkline
