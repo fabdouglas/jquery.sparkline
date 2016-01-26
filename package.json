@@ -7,7 +7,7 @@
     "version": "2.1.4",
     "repository": {
         "type": "git",
-        "url": "git@github.com:cferrell/jquery.sparkline.git",
+        "url": "git@github.com:chrisferrell/jquery.sparkline.git",
     },
     "author": {
         "name": "Gareth Watts",
